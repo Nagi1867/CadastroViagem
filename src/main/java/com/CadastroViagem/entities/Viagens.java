@@ -1,5 +1,6 @@
 package com.CadastroViagem.entities;
 
+import com.CadastroViagem.enums.Status;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -18,12 +19,12 @@ public class Viagens implements Serializable {
 
     public Viagens() {}
 
-    public Viagens(Long id, String nomePassageiro, String local, String transporte, Integer status) {
+    public Viagens(Long id, String nomePassageiro, String local, String transporte, Status status) {
         this.id = id;
         this.nomePassageiro = nomePassageiro;
         this.local = local;
         this.transporte = transporte;
-        this.status = status;
+        setStatus(status);
     }
 
     public Long getId() {
@@ -58,12 +59,14 @@ public class Viagens implements Serializable {
         this.transporte = transporte;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Status getStatus() {
+        return Status.valueOf(status);
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatus(Status status) {
+        if (status != null) {
+            this.status = status.getCode();
+        }
     }
 
     @Override

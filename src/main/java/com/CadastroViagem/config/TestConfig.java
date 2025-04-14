@@ -1,6 +1,7 @@
 package com.CadastroViagem.config;
 
 import com.CadastroViagem.entities.Viagens;
+import com.CadastroViagem.enums.Status;
 import com.CadastroViagem.repositories.ViagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,7 +15,7 @@ public class TestConfig implements CommandLineRunner {
     private ViagemRepository repository;
     @Override
     public void run(String... args) throws Exception {
-        Viagens viagens = new Viagens(null, "Alex", "BH", "Onibus", 1);
+        Viagens viagens = new Viagens(null, "Alex", "BH", "Onibus", Status.NAO_PAGO);
         repository.save(viagens);
     }
 }
